@@ -1,0 +1,9 @@
+<div class="container">
+    <a routerLink="">Home</a>
+</div>
+<div class="container">
+    <h1>City list country - US , state - California</h1>
+    <p *ngFor="let city of this.cityList">
+        <a routerLink="weather-info/{{city}}" (click)="this.onClick()"><strong>{{city}}</strong> </a>,
+    </p>
+</div>

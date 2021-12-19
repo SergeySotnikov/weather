@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { WeatherDataService } from './services/weather-data.service';
+
 
 @Component({
   selector: 'app-root',
@@ -8,25 +7,4 @@ import { WeatherDataService } from './services/weather-data.service';
   styleUrls: ['./app.component.sass'],
 })
 export class AppComponent {
-  cityList = [];
-
-  constructor(
-    private http: HttpClient,
-    private WeatherDataService: WeatherDataService
-  ) {}
-
-  onClick() {
-    this.WeatherDataService.showWeather(event);
-  }
-
-  ngOnInit() {
-    const domain = 'http://api.airvisual.com';
-    const endPointCities = '/v2/cities?state=California&country=USA';
-    const APIKey = '&key=85b08754-d67d-492f-ab21-e4fc4718756b';
-    const url = `${domain}${endPointCities}${APIKey}`;
-    this.http.get(url).subscribe((response: any) => {
-      this.cityList = response.data.map((item: any) => item.city);
-    });
-
-  }
 }
