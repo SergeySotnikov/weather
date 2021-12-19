@@ -22,18 +22,20 @@ export class WeatherDataService {
   showWeather(event: any) {
     this.cityName = event.target.textContent;
     console.log(this.cityName);
-    this.http
-      .get(
-        `http://api.airvisual.com/v2/city?city=${this.cityName}&state=California&country=USA&key=85b08754-d67d-492f-ab21-e4fc4718756b`
-      )
-      .subscribe((response: any) => {
-        this.weatherInfo.cityName = response.data.city;
-        this.weatherInfo.temperatureCelsius = response.data.current.weather.tp;
-        this.weatherInfo.atmosphericPressure = response.data.current.weather.pr;
-        this.weatherInfo.humidity = response.data.current.weather.hu;
-        this.weatherInfo.windSpeed = response.data.current.weather.ws;
-        console.log(this.weatherInfo);
-        this.subject.next(this.weatherInfo);
-      });
+
+    const domain = 'http://api.airvisual.com';
+    const endPointChoiceCities = `/v2/city?city=${this.cityName}&state=California&country=USA`;
+    const APIKey = '&key=85b08754-d67d-492f-ab21-e4fc4718756b';
+    const url = `${domain}${endPointChoiceCities}${APIKey}`;
+    
+    this.http.get(url).subscribe((response: any) => {
+      this.weatherInfo.cityName = response.data.city;
+      this.weatherInfo.temperatureCelsius = response.data.current.weather.tp;
+      this.weatherInfo.atmosphericPressure = response.data.current.weather.pr;
+      this.weatherInfo.humidity = response.data.current.weather.hu;
+      this.weatherInfo.windSpeed = response.data.current.weather.ws;
+      console.log(this.weatherInfo);
+      this.subject.next(this.weatherInfo);
+    });
   }
 }

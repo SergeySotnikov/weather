@@ -15,12 +15,10 @@ export class WeatherInfoComponent {
   humidity: any;
   windSpeed: any;
 
-  constructor(private WeatherDataService: WeatherDataService) {
-    this.weatherInfo = WeatherDataService.subject;
-  }
+  constructor(private weatherDataService: WeatherDataService) {}
 
   ngOnInit() {
-    this.weatherInfo.subscribe((obj) => {
+    this.weatherDataService.subject.subscribe((obj) => {
       this.cityName = obj.cityName;
       this.temperatureCelsius = obj.temperatureCelsius;
       this.atmosphericPressure = obj.atmosphericPressure;
