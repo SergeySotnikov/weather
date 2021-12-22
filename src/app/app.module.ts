@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { WeatherInfoComponent } from './weather-info/weather-info.component';
 import { CityListComponent } from './city-list/city-list.component';
 import { HomeComponent } from './home/home.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { HomeComponent } from './home/home.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgSelectModule,
+     FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
