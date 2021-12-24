@@ -6,9 +6,28 @@
     <h1 class="title">Weather @ng-select</h1>
 
     <div class="wrapper">
-        <h2 class="sub-title">Select country</h2>
-        <ng-select [items]="countryList" [(ngModel)]="selectedCountry"></ng-select>
-        Selected city object: {{selectedCountry | json}}
+        <div class="country">
+            <h2 class="sub-title">Select country</h2>
+            <ng-select [items]="countryList" [(ngModel)]="selectedCountry" (change)="getStateList($event)" placeholder="Select country">
+            </ng-select>
+            <span>Selected country: {{selectedCountry | json}}</span>
+        </div>
+
+        <div class="state">
+            <h2 class="sub-title">Select state</h2>
+            <ng-select [items]="stateList" [(ngModel)]="selectedState" (change)="getCityList($event)">
+            </ng-select>
+            <span>Selected state: {{selectedState | json}}</span>
+        </div>
+
+        <div class="city">
+            <h2 class="sub-title">Select city</h2>
+            <ng-select [items]="cityList" [(ngModel)]="selectedCity">
+            </ng-select>
+            <span>Selected city: {{selectedCity | json}}</span>
+        </div>
     </div>
+
+    <app-weather-info></app-weather-info>
 
 </div>
