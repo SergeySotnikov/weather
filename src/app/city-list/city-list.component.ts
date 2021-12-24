@@ -13,11 +13,11 @@ export class CityListComponent {
 
   constructor(
     private http: HttpClient,
-    private WeatherDataService: WeatherDataService
+    private weatherDataService: WeatherDataService
   ) {}
 
   onClick() {
-    this.WeatherDataService.showWeather(event);
+    this.weatherDataService.showWeather(event);
   }
 
   ngOnInit() {
