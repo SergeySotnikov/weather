@@ -14,6 +14,7 @@ export class WeatherDataService {
     atmosphericPressure: 0,
     humidity: 0,
     windSpeed: 0,
+    image: ''
   };
   subject = new Subject<any>();
 
@@ -52,7 +53,8 @@ export class WeatherDataService {
       this.weatherInfo.atmosphericPressure = response.data.current.weather.pr;
       this.weatherInfo.humidity = response.data.current.weather.hu;
       this.weatherInfo.windSpeed = response.data.current.weather.ws;
-      console.log(this.weatherInfo);
+      this.weatherInfo.image = response.data.current.weather.ic;
+      console.log(this.weatherInfo); 
       this.subject.next(this.weatherInfo);
     });
   }

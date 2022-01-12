@@ -2,11 +2,16 @@
     <h1>Weather Details</h1>
     <div class="card">
         <div class="card-body">
-            <h2 class="card-title">City - {{cityName}}</h2>
-            <h6 class="card-subtitle mb-2">Current temperature: {{temperatureCelsius}}°C</h6>
-            <h6 class="card-subtitle mb-2">Atmospheric pressure: {{atmosphericPressure}}hPa</h6>
-            <h6 class="card-subtitle mb-2">Humidity: {{humidity}}%</h6>
-            <h6 class="card-subtitle mb-2">Wind speed: {{windSpeed}}m/s</h6>
+            <div class="card-info">
+                <h2 class="card-title">City - {{cityName}}</h2>
+                <h6 class="card-subtitle mb-2">Current temperature: {{temperatureCelsius}}°C</h6>
+                <h6 class="card-subtitle mb-2">Atmospheric pressure: {{atmosphericPressure}}hPa</h6>
+                <h6 class="card-subtitle mb-2">Humidity: {{humidity}}%</h6>
+                <h6 class="card-subtitle mb-2">Wind speed: {{windSpeed}}m/s</h6>
+            </div>
+            <div class="card-image">
+                <img *ngIf="weatherImage" src="https://airvisual.com/images/{{weatherImage}}.png" alt="weather icon">
+            </div>
         </div>
     </div>
 </div>

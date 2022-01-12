@@ -8,12 +8,13 @@ import { WeatherDataService } from '../services/weather-data.service';
   styleUrls: ['./weather-info.component.sass'],
 })
 export class WeatherInfoComponent {
-  weatherInfo = new Subject<any>();
   cityName = '';
   temperatureCelsius: any;
   atmosphericPressure: any;
   humidity: any;
   windSpeed: any;
+  weatherImage : any;
+
 
   constructor(private weatherDataService: WeatherDataService) {}
 
@@ -24,6 +25,8 @@ export class WeatherInfoComponent {
       this.atmosphericPressure = obj.atmosphericPressure;
       this.humidity = obj.humidity;
       this.windSpeed = obj.windSpeed;
+      this.weatherImage = obj.image;
+      console.log(this.weatherImage);
     });
   }
 }
