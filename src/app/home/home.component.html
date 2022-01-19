@@ -20,12 +20,12 @@
             <span>Selected state: {{selectedState | json}}</span>
         </div>
 
-        <div class="city">
+        <!--   <div class="city">
             <h2 class="sub-title">Select city</h2>
             <ng-select [items]="cityList" [(ngModel)]="selectedCity" (change)="getWeatherInfo($event)">
             </ng-select>
             <span>Selected city: {{selectedCity | json}}</span>
-        </div>
+        </div> -->
     </div>
 
     <app-weather-info></app-weather-info>
