@@ -26,7 +26,6 @@ export class WeatherInfoComponent {
       this.humidity = obj.humidity;
       this.windSpeed = obj.windSpeed;
       this.weatherImage = obj.image;
-      console.log(this.weatherImage);
     });
   }
 }

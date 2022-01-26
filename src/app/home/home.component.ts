@@ -7,13 +7,14 @@ import { WeatherDataService } from '../services/weather-data.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.sass'],
 })
-
 export class HomeComponent implements OnInit {
-
   constructor(
     private http: HttpClient,
     private weatherDataService: WeatherDataService
   ) {}
+
+  domain = 'http://api.airvisual.com';
+  APIKey = '&key=85b08754-d67d-492f-ab21-e4fc4718756b';
 
   selectedCountry: any;
   selectedState: any;
@@ -28,42 +29,52 @@ export class HomeComponent implements OnInit {
     this.selectedState = '';
     this.selectedCity = '';
 
-    const domain = 'http://api.airvisual.com';
     const endPointState = `/v2/states?country=${country}`;
-    const APIKey = '&key=85b08754-d67d-492f-ab21-e4fc4718756b';
-    const url = `${domain}${endPointState}${APIKey}`;
-    this.http.get(url).subscribe((response: any) => {
-      this.stateList = response.data.map((item: any) => item.state);
-    });
+    const url = `${this.domain}${endPointState}${this.APIKey}`;
 
-   
+    fetch(url)
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        this.stateList = response.data.map((item: any) => item.state);
+      });
   }
 
   getCityList(state: String) {
     this.cityList = [];
     this.selectedCity = '';
 
-    const domain = 'http://api.airvisual.com';
     const endPointCity = `/v2/cities?state=${state}&country=${this.selectedCountry}`;
-    const APIKey = '&key=85b08754-d67d-492f-ab21-e4fc4718756b';
-    const url = `${domain}${endPointCity}${APIKey}`;
-    this.http.get(url).subscribe((response: any) => {
-      console.log(response);
-      this.cityList = response.data.map((item: any) => item.city);
-    });
+    const url = `${this.domain}${endPointCity}${this.APIKey}`;
+
+    fetch(url)
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        this.cityList = response.data.map((item: any) => item.city);
+      });
   }
 
   getWeatherInfo(city: String) {
-    this.weatherDataService.showWeatherSelect(this.selectedCountry,this.selectedState,city);
+    this.weatherDataService.showWeatherSelect(
+      this.selectedCountry,
+      this.selectedState,
+      city
+    );
   }
 
   ngOnInit(): void {
-    const domain = 'http://api.airvisual.com';
     const endPointCountry = '/v2/countries?';
-    const APIKey = 'key=85b08754-d67d-492f-ab21-e4fc4718756b';
-    const url = `${domain}${endPointCountry}${APIKey}`;
-    this.http.get(url).subscribe((response: any) => {
-      this.countryList = response.data.map((item: any) => item.country);
-    });
+    const url = `${this.domain}${endPointCountry}${this.APIKey}`;
+
+    fetch(url)
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        this.countryList = response.data.map((item: any) => item.country);
+      });
   }
 }
